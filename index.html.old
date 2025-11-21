@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoyaltyPoints - Aplikasi Loyalitas Pelanggan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-shadow {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+        
+        .hover-scale:hover {
+            transform: scale(1.02);
+        }
+        
+        .slide-in {
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(102, 126, 234, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(102, 126, 234, 0);
+            }
+        }
+        
+        .notification {
+            animation: slideDown 0.5s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .tab-active {
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .progress-bar {
+            transition: width 1s ease-out;
+        }
+        
+        .reward-card {
+            transition: all 0.3s ease;
+        }
+        
+        .reward-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Notification Container -->
+    <div id="notificationContainer" class="fixed top-4 right-4 z-50"></div>
+
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-crown text-3xl"></i>
+                    <div>
+                        <h1 class="text-2xl font-bold">LoyaltyPoints</h1>
+                        <p class="text-xs opacity-90">Dapatkan poin dari setiap pembelian</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="text-right">
+                        <p class="text-xs opacity-90">Total Poin</p>
+                        <p class="text-2xl font-bold" id="totalPointsDisplay">0</p>
+                    </div>
+                    <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center">
+                        <i class="fas fa-user text-purple-600 text-xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-6">
+        <!-- Tab Navigation -->
+        <div class="bg-white rounded-lg shadow-md mb-6">
+            <div class="flex overflow-x-auto">
+                <button onclick="showTab('earn')" class="tab-btn flex-1 px-4 py-3 text-center font-medium hover:bg-gray-50 transition tab-active" data-tab="earn">
+                    <i class="fas fa-plus-circle mr-2"></i>Dapatkan Poin
+                </button>
+                <button onclick="showTab('rewards')" class="tab-btn flex-1 px-4 py-3 text-center font-medium hover:bg-gray-50 transition" data-tab="rewards">
+                    <i class="fas fa-gift mr-2"></i>Reward
+                </button>
+                <button onclick="showTab('history')" class="tab-btn flex-1 px-4 py-3 text-center font-medium hover:bg-gray-50 transition" data-tab="history">
+                    <i class="fas fa-history mr-2"></i>Riwayat
+                </button>
+                <button onclick="showTab('profile')" class="tab-btn flex-1 px-4 py-3 text-center font-medium hover:bg-gray-50 transition" data-tab="profile">
+                    <i class="fas fa-user-circle mr-2"></i>Profil
+                </button>
+            </div>
+        </div>
+
+        <!-- Earn Points Tab -->
+        <div id="earnTab" class="tab-content">
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Form Section -->
+                <div class="bg-white rounded-lg card-shadow p-6 slide-in">
+                    <h2 class="text-xl font-bold mb-4 text-gray-800">
+                        <i class="fas fa-receipt text-purple-600 mr-2"></i>
+                        Masukkan Detail Pembelian
+                    </h2>
+                    <form id="purchaseForm" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Nomor Struk
+                            </label>
+                            <input type="text" id="receiptNumber" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
+                                placeholder="Contoh: STR-2024-001">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Lokasi Toko
+                            </label>
+                            <select id="storeLocation" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition">
+                                <option value="">Pilih Lokasi Toko</option>
+                                <option value="Jakarta Pusat - Grand Indonesia">Jakarta Pusat - Grand Indonesia</option>
+                                <option value="Jakarta Selatan - Pondok Indah Mall">Jakarta Selatan - Pondok Indah Mall</option>
+                                <option value="Jakarta Utara - Mall Kelapa Gading">Jakarta Utara - Mall Kelapa Gading</option>
+                                <option value="Jakarta Barat - Central Park">Jakarta Barat - Central Park</option>
+                                <option value="Jakarta Timur - Mall Cipinang Indah">Jakarta Timur - Mall Cipinang Indah</option>
+                                <option value="Tangerang - AEON Mall">Tangerang - AEON Mall</option>
+                                <option value="Bekasi - Summarecon Mall">Bekasi - Summarecon Mall</option>
+                                <option value="Depok - Depok Town Square">Depok - Depok Town Square</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Tanggal Pembelian
+                            </label>
+                            <input type="date" id="purchaseDate" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Total Pembelian (Rp)
+                            </label>
+                            <input type="number" id="purchaseAmount" required min="1000" step="1000"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"
+                                placeholder="0">
+                        </div>
+                        
+                        <div class="bg-purple-50 p-4 rounded-lg">
+                            <p class="text-sm text-purple-800">
+                                <i class="fas fa-info-circle mr-1"></i>
+                                Setiap Rp 10.000 pembelian = 1 poin
+                            </p>
+                            <p class="text-lg font-bold text-purple-900 mt-2">
+                                Poin yang akan didapat: <span id="pointsEarned">0</span>
+                            </p>
+                        </div>
+                        
+                        <button type="submit" 
+                            class="w-full bg-gradient-to-r from-purple-600 to-purple-700 text-white py-3 rounded-lg font-medium hover:from-purple-700 hover:to-purple-800 transition transform hover:scale-105">
+                            <i class="fas fa-check-circle mr-2"></i>
+                            Klaim Poin Saya
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Info Section -->
+                <div class="space-y-6">
+                    <!-- Points Progress -->
+                    <div class="bg-white rounded-lg card-shadow p-6 slide-in">
+                        <h3 class="text-lg font-bold mb-4 text-gray-800">
+                            <i class="fas fa-chart-line text-purple-600 mr-2"></i>
+                            Progress Poin Bulan Ini
+                        </h3>
+                        <div class="mb-2 flex justify-between text-sm">
+                            <span class="text-gray-600">Target: 500 poin</span>
+                            <span class="font-medium" id="monthlyProgress">0 / 500</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-3">
+                            <div id="progressBar" class="bg-gradient-to-r from-purple-600 to-purple-700 h-3 rounded-full progress-bar" style="width: 0%"></div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2">500 poin lagi naik ke level Gold!</p>
+                    </div>
+
+                    <!-- Quick Stats -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-lg p-4 hover-scale">
+                            <i class="fas fa-shopping-bag text-2xl mb-2"></i>
+                            <p class="text-2xl font-bold" id="totalPurchases">0</p>
+                            <p class="text-xs opacity-90">Total Pembelian</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-green-500 to-green-600 text-white rounded-lg p-4 hover-scale">
+                            <i class="fas fa-trophy text-2xl mb-2"></i>
+                            <p class="text-2xl font-bold" id="rewardsClaimed">0</p>
+                            <p class="text-xs opacity-90">Reward Diambil</p>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="bg-white rounded-lg card-shadow p-6">
+                        <h3 class="text-lg font-bold mb-4 text-gray-800">
+                            <i class="fas fa-clock text-purple-600 mr-2"></i>
+                            Aktivitas Terbaru
+                        </h3>
+                        <div id="recentActivity" class="space-y-3">
+                            <p class="text-gray-500 text-sm">Belum ada aktivitas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rewards Tab -->
+        <div id="rewardsTab" class="tab-content hidden">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-2">Katalog Reward</h2>
+                <p class="text-gray-600">Tukarkan poin Anda dengan reward menarik!</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-6" id="rewardsGrid">
+                <!-- Rewards will be dynamically inserted here -->
+            </div>
+        </div>
+
+        <!-- History Tab -->
+        <div id="historyTab" class="tab-content hidden">
+            <div class="bg-white rounded-lg card-shadow p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">
+                    <i class="fas fa-history text-purple-600 mr-2"></i>
+                    Riwayat Transaksi
+                </h2>
+                
+                <div class="mb-4 flex flex-wrap gap-2">
+                    <button onclick="filterHistory('all')" class="filter-btn px-4 py-2 bg-purple-600 text-white rounded-lg text-sm">
+                        Semua
+                    </button>
+                    <button onclick="filterHistory('earned')" class="filter-btn px-4 py-2 bg-gray-200 text-gray-700 rounded-lg text-sm hover:bg-gray-300">
+                        Poin Didapat
+                    </button>
+                    <button onclick="filterHistory('redeemed')" class="filter-btn px-4 py-2 bg-gray-200 text-gray-700 rounded-lg text-sm hover:bg-gray-300">
+                        Poin Ditukar
+                    </button>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b">
+                                <th class="text-left py-3 px-4">Tanggal</th>
+                                <th class="text-left py-3 px-4">Deskripsi</th>
+                                <th class="text-left py-3 px-4">Lokasi</th>
+                                <th class="text-right py-3 px-4">Poin</th>
+                                <th class="text-center py-3 px-4">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyTableBody">
+                            <tr>
+                                <td colspan="5" class="text-center py-8 text-gray-500">Belum ada riwayat transaksi</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Tab -->
+        <div id="profileTab" class="tab-content hidden">
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="md:col-span-1">
+                    <div class="bg-white rounded-lg card-shadow p-6 text-center">
+                        <div class="w-24 h-24 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <i class="fas fa-user text-white text-4xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">John Doe</h3>
+                        <p class="text-gray-600 text-sm mb-4">john.doe@email.com</p>
+                        <div class="bg-purple-50 rounded-lg p-3">
+                            <p class="text-xs text-purple-600 mb-1">Membership Level</p>
+                            <p class="text-lg font-bold text-purple-800">Silver Member</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:col-span-2">
+                    <div class="bg-white rounded-lg card-shadow p-6">
+                        <h3 class="text-lg font-bold mb-4 text-gray-800">Informasi Membership</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center pb-3 border-b">
+                                <span class="text-gray-600">ID Member</span>
+                                <span class="font-medium">LP-2024-0001</span>
+                            </div>
+                            <div class="flex justify-between items-center pb-3 border-b">
+                                <span class="text-gray-600">Tanggal Bergabung</span>
+                                <span class="font-medium">1 Januari 2024</span>
+                            </div>
+                            <div class="flex justify-between items-center pb-3 border-b">
+                                <span class="text-gray-600">Total Poin Lifetime</span>
+                                <span class="font-medium text-purple-600" id="lifetimePoints">0</span>
+                            </div>
+                            <div class="flex justify-between items-center pb-3 border-b">
+                                <span class="text-gray-600">Poin Expired (Bulan ini)</span>
+                                <span class="font-medium text-red-600">0</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 p-4 bg-blue-50 rounded-lg">
+                            <h4 class="font-semibold text-blue-900 mb-2">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                Tips Mendapatkan Poin Lebih Cepat
+                            </h4>
+                            <ul class="text-sm text-blue-800 space-y-1">
+                                <li>• Belanja minimal Rp 500.000 dapat bonus 50 poin</li>
+                                <li>• Ajak teman dan dapat 100 poin per referral</li>
+                                <li>• Ulasan produk dapat 10 poin per ulasan</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-12 py-6">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-sm opacity-75">© 2024 LoyaltyPoints. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Data Storage
+        let userData = {
+            totalPoints: 0,
+            lifetimePoints: 0,
+            monthlyPoints: 0,
+            totalPurchases: 0,
+            rewardsClaimed: 0,
+            transactions: [],
+            currentLevel: 'Silver'
+        };
+
+        // Rewards Catalog
+        const rewardsCatalog = [
+            { id: 1, name: 'Voucher Diskon 10%', points: 100, description: 'Berlaku untuk pembelian minimum Rp 100.000', icon: 'fa-tag', category: 'voucher' },
+            { id: 2, name: 'Voucher Diskon 20%', points: 200, description: 'Berlaku untuk pembelian minimum Rp 200.000', icon: 'fa-percentage', category: 'voucher' },
+            { id: 3, name: 'Gratis Ongkir', points: 50, description: 'Gratis ongkir untuk pembelian online', icon: 'fa-truck', category: 'voucher' },
+            { id: 4, name: 'Cashback Rp 25.000', points: 250, description: 'Cashback langsung ke wallet', icon: 'fa-wallet', category: 'cashback' },
+            { id: 5, name: 'Cashback Rp 50.000', points: 500, description: 'Cashback langsung ke wallet', icon: 'fa-money-bill-wave', category: 'cashback' },
+            { id: 6, name: 'Tote Bag Exclusive', points: 300, description: 'Tote bag eksklusif LoyaltyPoints', icon: 'fa-shopping-bag', category: 'merchandise' },
+            { id: 7, name: 'Tumbler Premium', points: 400, description: 'Tumbler stainless steel premium', icon: 'fa-mug-hot', category: 'merchandise' },
+            { id: 8, name: 'Voucher Belanja Rp 100.000', points: 1000, description: 'Voucher belanja tanpa minimum', icon: 'fa-gift', category: 'voucher' }
+        ];
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadUserData();
+            initializeRewards();
+            updateDisplay();
+            setMaxDate();
+        });
+
+        // Set max date to today
+        function setMaxDate() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('purchaseDate').max = today;
+            document.getElementById('purchaseDate').value = today;
+        }
+
+        // Load user data from localStorage
+        function loadUserData() {
+            const savedData = localStorage.getItem('loyaltyPointsData');
+            if (savedData) {
+                userData = JSON.parse(savedData);
+            }
+        }
+
+        // Save user data to localStorage
+        function saveUserData() {
+            localStorage.setItem('loyaltyPointsData', JSON.stringify(userData));
+        }
+
+        // Tab Navigation
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.add('hidden');
+            });
+            
+            // Remove active class from all tab buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('tab-active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName + 'Tab').classList.remove('hidden');
+            
+            // Add active class to selected tab button
+            document.querySelector(`[data-tab="${tabName}"]`).classList.add('tab-active');
+            
+            // Update content based on tab
+            if (tabName === 'rewards') {
+                initializeRewards();
+            } else if (tabName === 'history') {
+                updateHistory();
+            }
+        }
+
+        // Calculate points from amount
+        document.getElementById('purchaseAmount').addEventListener('input', function(e) {
+            const amount = parseInt(e.target.value) || 0;
+            const points = Math.floor(amount / 10000);
+            document.getElementById('pointsEarned').textContent = points;
+        });
+
+        // Handle form submission
+        document.getElementById('purchaseForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const receiptNumber = document.getElementById('receiptNumber').value;
+            const storeLocation = document.getElementById('storeLocation').value;
+            const purchaseDate = document.getElementById('purchaseDate').value;
+            const purchaseAmount = parseInt(document.getElementById('purchaseAmount').value);
+            const pointsEarned = Math.floor(purchaseAmount / 10000);
+            
+            // Check if receipt already exists
+            if (userData.transactions.some(t => t.receiptNumber === receiptNumber)) {
+                showNotification('Nomor struk sudah pernah digunakan!', 'error');
+                return;
+            }
+            
+            // Add transaction
+            const transaction = {
+                id: Date.now(),
+                type: 'earned',
+                date: purchaseDate,
+                description: `Pembelian - ${receiptNumber}`,
+                location: storeLocation,
+                points: pointsEarned,
+                amount: purchaseAmount,
+                receiptNumber: receiptNumber
+            };
+            
+            userData.transactions.unshift(transaction);
+            userData.totalPoints += pointsEarned;
+            userData.lifetimePoints += pointsEarned;
+            userData.monthlyPoints += pointsEarned;
+            userData.totalPurchases++;
+            
+            // Save and update
+            saveUserData();
+            updateDisplay();
+            updateRecentActivity();
+            
+            // Reset form
+            document.getElementById('purchaseForm').reset();
+            document.getElementById('purchaseDate').value = new Date().toISOString().split('T')[0];
+            document.getElementById('pointsEarned').textContent = '0';
+            
+            // Show success notification
+            showNotification(`Berhasil mendapatkan ${pointsEarned} poin!`, 'success');
+            
+            // Check level up
+            checkLevelUp();
+        });
+
+        // Initialize rewards
+        function initializeRewards() {
+            const rewardsGrid = document.getElementById('rewardsGrid');
+            rewardsGrid.innerHTML = '';
+            
+            rewardsCatalog.forEach(reward => {
+                const canRedeem = userData.totalPoints >= reward.points;
+                const rewardCard = document.createElement('div');
+                rewardCard.className = `reward-card bg-white rounded-lg card-shadow p-6 ${!canRedeem ? 'opacity-60' : ''}`;
+                rewardCard.innerHTML = `
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full mx-auto mb-3 flex items-center justify-center">
+                            <i class="fas ${reward.icon} text-white text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800">${reward.name}</h3>
+                        <p class="text-xs text-gray-600 mt-2">${reward.description}</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-2xl font-bold text-purple-600 mb-3">${reward.points} Poin</p>
+                        <button onclick="redeemReward(${reward.id})" 
+                            class="w-full py-2 rounded-lg font-medium transition ${
+                                canRedeem 
+                                ? 'bg-purple-600 text-white hover:bg-purple-700' 
+                                : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                            }"
+                            ${!canRedeem ? 'disabled' : ''}>
+                            ${canRedeem ? 'Tukar Sekarang' : 'Poin Tidak Cukup'}
+                        </button>
+                    </div>
+                `;
+                rewardsGrid.appendChild(rewardCard);
+            });
+        }
+
+        // Redeem reward
+        function redeemReward(rewardId) {
+            const reward = rewardsCatalog.find(r => r.id === rewardId);
+            
+            if (!reward || userData.totalPoints < reward.points) {
+                showNotification('Poin tidak cukup!', 'error');
+                return;
+            }
+            
+            // Confirm redemption
+            if (!confirm(`Tukar ${reward.name} dengan ${reward.points} poin?`)) {
+                return;
+            }
+            
+            // Deduct points
+            userData.totalPoints -= reward.points;
+            userData.rewardsClaimed++;
+            
+            // Add transaction
+            const transaction = {
+                id: Date.now(),
+                type: 'redeemed',
+                date: new Date().toISOString().split('T')[0],
+                description: `Reward - ${reward.name}`,
+                location: '-',
+                points: -reward.points
+            };
+            
+            userData.transactions.unshift(transaction);
+            
+            // Save and update
+            saveUserData();
+            updateDisplay();
+            initializeRewards();
+            updateHistory();
+            
+            showNotification(`Berhasil menukar ${reward.name}!`, 'success');
+        }
+
+        // Update display
+        function updateDisplay() {
+            document.getElementById('totalPointsDisplay').textContent = userData.totalPoints.toLocaleString();
+            document.getElementById('totalPurchases').textContent = userData.totalPurchases;
+            document.getElementById('rewardsClaimed').textContent = userData.rewardsClaimed;
+            document.getElementById('lifetimePoints').textContent = userData.lifetimePoints.toLocaleString();
+            
+            // Update progress bar
+            const progress = Math.min((userData.monthlyPoints / 500) * 100, 100);
+            document.getElementById('progressBar').style.width = progress + '%';
+            document.getElementById('monthlyProgress').textContent = `${userData.monthlyPoints} / 500`;
+            
+            updateRecentActivity();
+        }
+
+        // Update recent activity
+        function updateRecentActivity() {
+            const recentActivity = document.getElementById('recentActivity');
+            const recentTransactions = userData.transactions.slice(0, 3);
+            
+            if (recentTransactions.length === 0) {
+                recentActivity.innerHTML = '<p class="text-gray-500 text-sm">Belum ada aktivitas</p>';
+                return;
+            }
+            
+            recentActivity.innerHTML = recentTransactions.map(transaction => `
+                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 rounded-full flex items-center justify-center mr-3 ${
+                            transaction.type === 'earned' 
+                            ? 'bg-green-100 text-green-600' 
+                            : 'bg-red-100 text-red-600'
+                        }">
+                            <i class="fas ${transaction.type === 'earned' ? 'fa-plus' : 'fa-minus'} text-xs"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-gray-800">${transaction.description}</p>
+                            <p class="text-xs text-gray-500">${transaction.date}</p>
+                        </div>
+                    </div>
+                    <span class="font-bold ${
+                        transaction.type === 'earned' 
+                        ? 'text-green-600' 
+                        : 'text-red-600'
+                    }">
+                        ${transaction.type === 'earned' ? '+' : ''}${transaction.points}
+                    </span>
+                </div>
+            `).join('');
+        }
+
+        // Update history table
+        function updateHistory(filter = 'all') {
+            const tbody = document.getElementById('historyTableBody');
+            let transactions = userData.transactions;
+            
+            if (filter === 'earned') {
+                transactions = transactions.filter(t => t.type === 'earned');
+            } else if (filter === 'redeemed') {
+                transactions = transactions.filter(t => t.type === 'redeemed');
+            }
+            
+            if (transactions.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" class="text-center py-8 text-gray-500">Belum ada riwayat transaksi</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = transactions.map(transaction => `
+                <tr class="border-b hover:bg-gray-50">
+                    <td class="py-3 px-4">${transaction.date}</td>
+                    <td class="py-3 px-4">${transaction.description}</td>
+                    <td class="py-3 px-4">${transaction.location}</td>
+                    <td class="py-3 px-4 text-right font-medium ${
+                        transaction.type === 'earned' 
+                        ? 'text-green-600' 
+                        : 'text-red-600'
+                    }">
+                        ${transaction.type === 'earned' ? '+' : ''}${transaction.points}
+                    </td>
+                    <td class="py-3 px-4 text-center">
+                        <span class="px-2 py-1 rounded-full text-xs font-medium ${
+                            transaction.type === 'earned' 
+                            ? 'bg-green-100 text-green-800' 
+                            : 'bg-red-100 text-red-800'
+                        }">
+                            ${transaction.type === 'earned' ? 'Didapat' : 'Ditukar'}
+                        </span>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // Filter history
+        function filterHistory(filter) {
+            // Update button styles
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-purple-600', 'text-white');
+                btn.classList.add('bg-gray-200', 'text-gray-700');
+            });
+            event.target.classList.remove('bg-gray-200', 'text-gray-700');
+            event.target.classList.add('bg-purple-600', 'text-white');
+            
+            updateHistory(filter);
+        }
+
+        // Show notification
+        function showNotification(message, type = 'info') {
+            const container = document.getElementById('notificationContainer');
+            const notification = document.createElement('div');
+            
+            const bgColor = type === 'success' ? 'bg-green-500' : type === 'error' ? 'bg-red-500' : 'bg-blue-500';
+            const icon = type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle';
+            
+            notification.className = `notification ${bgColor} text-white px-6 py-4 rounded-lg shadow-lg mb-4 flex items-center`;
+            notification.innerHTML = `
+                <i class="fas ${icon} mr-3"></i>
+                <span>${message}</span>
+            `;
+            
+            container.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // Check level up
+        function checkLevelUp() {
+            let newLevel = userData.currentLevel;
+            
+            if (userData.lifetimePoints >= 5000) {
+                newLevel = 'Platinum';
+            } else if (userData.lifetimePoints >= 2000) {
+                newLevel = 'Gold';
+            } else if (userData.lifetimePoints >= 500) {
+                newLevel = 'Silver';
+            } else {
+                newLevel = 'Bronze';
+            }
+            
+            if (newLevel !== userData.currentLevel) {
+                userData.currentLevel = newLevel;
+                showNotification(`Selamat! Anda naik ke level ${newLevel}!`, 'success');
+                saveUserData();
+            }
+        }
+    </script>
+</body>
+</html>

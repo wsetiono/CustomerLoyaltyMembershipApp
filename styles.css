@@ -1,0 +1,653 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+.gradient-bg {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.card-shadow {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.hover-scale {
+    transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+    transform: scale(1.02);
+}
+
+.slide-in {
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.pulse-animation {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(102, 126, 234, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(102, 126, 234, 0);
+    }
+}
+
+.notification {
+    animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.tab-active {
+    border-bottom: 3px solid #667eea;
+}
+
+.progress-bar {
+    transition: width 1s ease-out;
+}
+
+.reward-card {
+    transition: all 0.3s ease;
+}
+
+.reward-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Focus styles */
+input:focus,
+select:focus,
+button:focus {
+    outline: none;
+}
+
+/* Button transitions */
+button {
+    transition: all 0.3s ease;
+}
+
+/* Table hover effects */
+tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    .grid {
+        gap: 1rem;
+    }
+    
+    .text-2xl {
+        font-size: 1.5rem;
+    }
+}
+
+/* Loading animation */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Badge styles */
+.badge {
+    display: inline-block;
+    padding: 0.25em 0.6em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+}
+
+/* Card hover effects */
+.card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Tab content animation */
+.tab-content {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Form validation styles */
+input:invalid {
+    border-color: #ef4444;
+}
+
+input:valid {
+    border-color: #10b981;
+}
+
+/* Success/Error states */
+.success-state {
+    background-color: #10b981;
+    color: white;
+}
+
+.error-state {
+    background-color: #ef4444;
+    color: white;
+}
+
+/* Tooltip styles */
+.tooltip {
+    position: relative;
+}
+
+.tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #1f2937;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover::after {
+    opacity: 1;
+}
+
+.level-explorer {
+    background-color: #2563eb;
+}
+
+.user-level {
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.level-info-list li i {
+    color: green;
+}
+
+.level-info-title {
+	margin-top: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: purple;
+}
+
+.rank-achiever, .rank-champion, .rank-legend {
+	opacity: 0.3;
+}
+
+.mission {
+	margin-top: 40px;
+}
+
+.mission-item {
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    background-color: #f8f9fa;
+    border-left: 4px solid var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.mission-title {
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mission-progress {
+    width: 100%;
+    height: 8px;
+    background-color: #e9ecef;
+    border-radius: 10px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.mission-progress-bar {
+    height: 100%;
+    background-color: green;
+    border-radius: 10px;
+    transition: width 0.5s ease;
+}
+
+#progressBar {
+    height: 100%;
+    background: linear-gradient(to right, green, green);
+    border-radius: 10px;
+    transition: width 1s ease-in-out;
+	width: 30% !important;
+}
+
+#gameGrid {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    overflow-x: hidden;
+	  margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#gameGrid header {
+    text-align: center;
+    margin-bottom: 20px;
+    animation: fadeInDown 0.8s ease;
+    width: 100%;
+}
+
+#gameGrid h1 {
+    color: white;
+    font-size: clamp(1.5em, 5vw, 2.5em);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    margin-bottom: 10px;
+}
+
+#gameGrid .points-display {
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    padding: 12px 25px;
+    border-radius: 30px;
+    color: white;
+    font-size: clamp(1em, 3vw, 1.2em);
+    font-weight: bold;
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+#gameGrid .points-display span {
+    color: #ffd700;
+    font-size: 1.2em;
+    margin-left: 8px;
+}
+
+#gameGrid main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+    max-width: 600px;
+}
+
+#gameGrid .game-board-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    max-width: 500px;
+    animation: fadeIn 1s ease;
+}
+
+#gameGrid .game-board {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#gameGrid .board-track {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+    box-shadow: 0 0 30px rgba(0,0,0,0.3), inset 0 0 20px rgba(255,255,255,0.1);
+}
+
+#gameGrid .tile {
+    position: absolute;
+    width: clamp(50px, 12vw, 70px);
+    height: clamp(50px, 12vw, 70px);
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    border: 2px solid white;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: clamp(0.6em, 2vw, 0.8em);
+    text-align: center;
+    padding: 3px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+#gameGrid .tile:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+}
+
+#gameGrid .tile.start {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    width: clamp(60px, 14vw, 80px);
+    height: clamp(60px, 14vw, 80px);
+    font-size: clamp(0.7em, 2.5vw, 0.95em);
+}
+
+#gameGrid .tile.points {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+#gameGrid .tile.discount {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+#gameGrid .tile.bonus {
+    background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+}
+
+#gameGrid .tile-icon {
+    font-size: clamp(1.2em, 3vw, 1.6em);
+    margin-bottom: 2px;
+}
+
+#gameGrid .panda {
+    position: absolute;
+    font-size: clamp(25px, 6vw, 35px);
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 10;
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.4));
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+#gameGrid .dice-container {
+    background: rgba(255,255,255,0.95);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    text-align: center;
+    animation: fadeInUp 1s ease;
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+    overflow: hidden;
+}
+
+#gameGrid .dice {
+    width: clamp(70px, 15vw, 90px);
+    height: clamp(70px, 15vw, 90px);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(2em, 5vw, 2.5em);
+    color: white;
+    margin: 0 auto 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#gameGrid .dice:hover {
+    transform: scale(1.05);
+}
+
+#gameGrid .dice.rolling {
+    animation: roll 0.5s ease-in-out;
+}
+
+@keyframes roll {
+    0% { transform: rotateX(0) rotateY(0); }
+    25% { transform: rotateX(720deg) rotateY(360deg) scale(0.8); }
+    50% { transform: rotateX(1440deg) rotateY(720deg) scale(1.1); }
+    75% { transform: rotateX(2160deg) rotateY(1080deg) scale(0.9); }
+    100% { transform: rotateX(2880deg) rotateY(1440deg) scale(1); }
+}
+
+#gameGrid .roll-button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 12px 35px;
+    font-size: clamp(1em, 3vw, 1.2em);
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    width: 100%;
+    max-width: 250px;
+}
+
+#gameGrid .roll-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+
+#gameGrid .roll-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#gameGrid .reward-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+    z-index: 1000;
+    text-align: center;
+    transition: all 0.3s ease;
+    width: 90%;
+    max-width: 350px;
+}
+
+#gameGrid .reward-popup.show {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+#gameGrid .reward-popup h2 {
+    color: #667eea;
+    margin-bottom: 12px;
+    font-size: clamp(1.3em, 4vw, 1.8em);
+}
+
+#gameGrid .reward-popup p {
+    color: #333;
+    font-size: clamp(1em, 3vw, 1.2em);
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+#gameGrid .close-popup {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: clamp(0.9em, 2.5vw, 1em);
+    font-weight: bold;
+    width: 100%;
+    max-width: 200px;
+}
+
+#gameGrid .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
+    display: none;
+}
+
+#gameGrid .overlay.show {
+    display: block;
+}
+
+#gameGrid .dice-movement {
+    position: absolute;
+    top: 50%;
+    left: -100px;
+    transform: translateY(-50%);
+    transition: left 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* Desktop specific styles */
+@media (min-width: 768px) {
+    #gameGrid main {
+        flex-direction: row;
+        justify-content: center;
+        max-width: 1000px;
+        gap: 40px;
+    }
+
+    #gameGrid .game-board-container {
+        max-width: 500px;
+    }
+
+    #gameGrid .dice-container {
+        max-width: 350px;
+    }
+
+    #gameGrid .roll-button {
+        max-width: 200px;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 380px) {
+    #gameGrid .tile {
+        width: 45px;
+        height: 45px;
+        font-size: 0.55em;
+    }
+
+    #gameGrid .tile.start {
+        width: 55px;
+        height: 55px;
+    }
+
+    #gameGrid .tile-icon {
+        font-size: 1.1em;
+    }
+
+    #gameGrid .panda {
+        font-size: 22px;
+    }
+}
