@@ -31,6 +31,7 @@
                 </div>
                 <div class="flex items-center space-x-4">
                     <div class="text-right">
+					<p class="text-xs opacity-90">Welcome, Joni</p>
                         <p class="text-xs opacity-90">Total Poin</p>
                         <p class="text-2xl font-bold" id="totalPointsDisplay">0</p>
                     </div>
@@ -61,6 +62,9 @@
                 </button>
                 <button onclick="showTab('profile')" class="tab-btn flex-1 px-4 py-3 text-center font-medium hover:bg-gray-50 transition" data-tab="profile">
                     <i class="fas fa-user-circle mr-2"></i>Profil
+                </button>
+				   <button onclick="showTab('attendance')" class="tab-btn flex-1 px-4 py-3 text-center font-medium hover:bg-gray-50 transition" data-tab="attendance">
+                    <i class="fas fa-history mr-2"></i>Attendance
                 </button>
             </div>
         </div>
@@ -332,40 +336,64 @@
             </div>
         </div>
 
-        <!-- History Tab -->
-        <div id="historyTab" class="tab-content hidden">
+        <!-- Attendance Tab -->
+        <div id="attendanceTab" class="tab-content hidden">
             <div class="bg-white rounded-lg card-shadow p-6">
                 <h2 class="text-2xl font-bold text-gray-800 mb-6">
                     <i class="fas fa-history text-purple-600 mr-2"></i>
-                    Riwayat Transaksi
+                    Attendance
                 </h2>
+         
+				
+				<div class="mb-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="classSelect" class="form-label">Pilih Kelas</label>
+                            <select class="form-select" id="classSelect">
+                                <option value="animation-basic" selected>Animation Basic</option>
+                                <option value="web-development">Web Development</option>
+                                <option value="ui-ux-design">UI/UX Design</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="sessionDate" class="form-label">Tanggal Sesi</label>
+                            <input type="date" class="form-control" id="sessionDate" value="2025-11-10">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="sessionTime" class="form-label">Waktu Sesi</label>
+                            <input type="text" class="form-control" id="sessionTime" value="10:00-11:00">
+                        </div>
+                    </div>
+                </div>
                 
-                <div class="mb-4 flex flex-wrap gap-2">
-                    <button onclick="filterHistory('all')" class="filter-btn px-4 py-2 bg-purple-600 text-white rounded-lg text-sm">
-                        Semua
-                    </button>
-                    <button onclick="filterHistory('earned')" class="filter-btn px-4 py-2 bg-gray-200 text-gray-700 rounded-lg text-sm hover:bg-gray-300">
-                        Poin Didapat
-                    </button>
-                    <button onclick="filterHistory('redeemed')" class="filter-btn px-4 py-2 bg-gray-200 text-gray-700 rounded-lg text-sm hover:bg-gray-300">
-                        Poin Ditukar
-                    </button>
+                <div class="mb-3">
+                    <label for="lessonTopic" class="form-label">Topik Pelajaran</label>
+                    <input type="text" class="form-control" id="lessonTopic" value="Definisi Animasi">
                 </div>
                 
                 <div class="overflow-x-auto">
                     <table class="w-full">
                         <thead>
                             <tr class="border-b">
-                                <th class="text-left py-3 px-4">Tanggal</th>
-                                <th class="text-left py-3 px-4">Deskripsi</th>
-                                <th class="text-left py-3 px-4">Lokasi</th>
-                                <th class="text-right py-3 px-4">Poin</th>
-                                <th class="text-center py-3 px-4">Status</th>
+                                <th class="text-left py-3 px-4">No</th>
+                                <th class="text-left py-3 px-4">Nama Peserta</th>
+                                <th class="text-left py-3 px-4">Sesi Selesai</th>
+                                <th class="text-right py-3 px-4">Total Sesi</th>
+                                <th class="text-center py-3 px-4">Aksi</th>
                             </tr>
                         </thead>
                         <tbody id="historyTableBody">
                             <tr>
-                                <td colspan="5" class="text-center py-8 text-gray-500">Belum ada riwayat transaksi</td>
+                                <!--<td colspan="5" class="text-center py-8 text-gray-500">Belum ada riwayat transaksi</td>-->
+								<td>1</td>
+								<td>Joni</td>
+								<td>5 jam</td>
+								<td>15 jam</td>
+								<td><button type="submit" 
+                            class="w-full bg-gradient-to-r from-purple-600 to-purple-700 text-white py-3 rounded-lg font-medium hover:from-purple-700 hover:to-purple-800 transition transform hover:scale-105">
+                            <i class="fas fa-check-circle mr-2"></i>
+                            Submit Kehadiran
+                        </button></td>
                             </tr>
                         </tbody>
                     </table>
