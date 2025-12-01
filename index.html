@@ -33,7 +33,7 @@
                     <div class="text-right">
 					<p class="text-xs opacity-90">Welcome, Joni</p>
                         <p class="text-xs opacity-90">Total Poin</p>
-                        <p class="text-2xl font-bold" id="totalPointsDisplay">0</p>
+                        <p class="text-2xl font-bold" id="totalPointsDisplay">80</p>
                     </div>
                     <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center">
                         <i class="fas fa-user text-purple-600 text-xl"></i>
@@ -57,9 +57,9 @@
 				<button onclick="showTab('game')" class="tab-btn flex-1 px-4 py-3 text-center font-medium hover:bg-gray-50 transition" data-tab="game">
                     <i class="fas fa-gift mr-2"></i>Game
                 </button>
-                <button onclick="showTab('history')" class="tab-btn flex-1 px-4 py-3 text-center font-medium hover:bg-gray-50 transition" data-tab="history">
-                    <i class="fas fa-history mr-2"></i>Riwayat
-                </button>
+                <!-- <button onclick="showTab('history')" class="tab-btn flex-1 px-4 py-3 text-center font-medium hover:bg-gray-50 transition" data-tab="history"> -->
+                    <!-- <i class="fas fa-history mr-2"></i>Riwayat -->
+                <!-- </button> -->
                 <button onclick="showTab('profile')" class="tab-btn flex-1 px-4 py-3 text-center font-medium hover:bg-gray-50 transition" data-tab="profile">
                     <i class="fas fa-user-circle mr-2"></i>Profil
                 </button>
@@ -86,7 +86,6 @@
                             <select id="storeLocation" required
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition">
                                 <option value="">Pilih Misi</option>
-								<option value="Jakarta Pusat - Grand Indonesia 2">Absen setiap hari - 20 poin</option>
                                 <option value="Jakarta Pusat - Grand Indonesia">Membeli kursus dengan nilai minimal 1 juta rupiah - 100 poin</option>
                                 <option value="Jakarta Selatan - Pondok Indah Mall">Mengikuti akun Instagram resmi lembaga kursus - 20 poin</option>
                                 <option value="Jakarta Utara - Mall Kelapa Gading">Menyukai postingan Instagram resmi lembaga kursus - 5 poin</option>
@@ -95,50 +94,31 @@
                                 <option value="Tangerang - AEON Mall">Memainkan mini game Monopoly - 30 poin</option>
                                 <option value="Bekasi - Summarecon Mall">Memberikan review di Google My Business - 40 poin</option>
                                 <option value="Depok - Depok Town Square">Mereferensikan teman untuk bergabung - 100 poin</option>
+								<option value="Depok - Depok Town Square">Join academy program - 100 poin</option>
                             </select>
                         </div>
                         
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">
-                                Tanggal Melakukan Misi
+                                Tanggal Hari Ini
                             </label>
-                            <input type="date" id="purchaseDate" required
-                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition">
+                            <!-- <input type="date" id="purchaseDate" required -->
+                                <!-- class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition"> -->
+							<p>18 November 2025</p>
                         </div>
 						
-						<!-- Upload Bukti Foto -->
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">
-                                Upload Bukti Misi
-                            </label>
-                            <div class="upload-area" id="uploadArea">
-                                <input type="file" id="receiptImage" accept="image/*" class="hidden" required>
-                                <div id="uploadPreview" class="upload-preview hidden">
-                                    <img id="previewImg" src="" alt="Preview" class="w-full h-48 object-cover rounded-lg">
-                                    <button type="button" onclick="removeImage()" class="mt-2 text-red-600 text-sm hover:text-red-700">
-                                        <i class="fas fa-trash mr-1"></i>Hapus Gambar
-                                    </button>
-                                </div>
-                                <div id="uploadPlaceholder" class="upload-placeholder">
-                                    <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-2"></i>
-                                    <p class="text-sm text-gray-600 mb-2">Klik atau drag & drop foto misi di sini</p>
-                                    <p class="text-xs text-gray-500">Format: JPG, PNG, WebP (Max: 5MB)</p>
-                                    <button type="button" onclick="document.getElementById('receiptImage').click()" 
-                                        class="mt-3 px-4 py-2 bg-purple-600 text-white rounded-lg text-sm hover:bg-purple-700 transition">
-                                        <i class="fas fa-camera mr-2"></i>Pilih Foto
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
                        
                         <div class="bg-purple-50 p-4 rounded-lg">
                             <p class="text-sm text-purple-800">
                                 <i class="fas fa-info-circle mr-1"></i>
                                 Setelah misi diapprove admin, maka poin akan bertambah
                             </p>
-                            <p class="text-lg font-bold text-purple-900 mt-2">
-                                Poin yang akan didapat: <span id="pointsEarned">0</span>
+							 <p class="text-lg font-bold text-red-900 mt-2">
+                                Mohon bukti bisa dikirim melalui discord
                             </p>
+                            <!-- <p class="text-lg font-bold text-purple-900 mt-2"> -->
+                                <!-- Poin yang akan didapat: <span id="pointsEarned">0</span> -->
+                            <!-- </p> -->
                         </div>
                         
                         <button type="submit" 
@@ -150,52 +130,116 @@
 					
 					<h2 class="text-xl font-bold mb-4 text-gray-800 mission">
                         <i class="fas fa-receipt text-purple-600 mr-2"></i>
-                        Misi dan Tantangan
+                        Riwayat Loyalty Mission dan Redeem
                     </h2>
 					<div class="card-body">
-						<div class="mission-list">
-							<div class="mission-item" id="mission1">
-								<div class="mission-title">
-									<span>Absen setiap hari</span>
-									<span class="mission-reward">+20 poin</span>
-								</div>
-								<div class="mission-progress">
-									<div class="mission-progress-bar" id="mission1Progress" style="width: 33%"></div>
-								</div>
-								<small class="text-muted">0 / 30 selesai</small>
-							</div>
-							<div class="mission-item" id="mission2">
-								<div class="mission-title">
-									<span>Membeli kursus dengan minimal 1 juta rupiah</span>
-									<span class="mission-reward">+50 poin</span>
-								</div>
-								<div class="mission-progress">
-									<div class="mission-progress-bar" id="mission1Progress" style="width: 33%"></div>
-								</div>
-								<small class="text-muted">1 / 3 selesai</small>
-							</div>
-							<div class="mission-item" id="mission3">
-								<div class="mission-title">
-									<span>Mereferensikan teman untuk bergabung</span>
-									<span class="mission-reward">+100 poin</span>
-								</div>
-								<div class="mission-progress">
-									<div class="mission-progress-bar" id="mission2Progress" style="width: 0%"></div>
-								</div>
-								<small class="text-muted">0 / 1 selesai</small>
-							</div>
-							<div class="mission-item" id="mission4">
-								<div class="mission-title">
-									<span>Mengikuti akun instagram resmi lembaga kursus</span>
-									<span class="mission-reward">+75 poin</span>
-								</div>
-								<div class="mission-progress">
-									<div class="mission-progress-bar" id="mission3Progress" style="width: 0%"></div>
-								</div>
-								<small class="text-muted">0 / 1 selesai</small>
-							</div>
-							
-						</div>
+					
+					
+						 <div class="overflow-x-auto"> 
+							 <table class="w-full"> 
+								 <thead> 
+									 <tr class="border-b"> 
+										 <th class="text-left py-3 px-4">Tanggal</th> 
+										  <th class="text-left py-3 px-4">Jam</th> 
+										 <th class="text-left py-3 px-4">Deskripsi</th> 
+										 <th class="text-right py-3 px-4">Poin</th> 
+										 <th class="text-center py-3 px-4">Status</th> 
+									 </tr> 
+								 </thead> 
+								 <tbody id="historyTableBody"> 
+									 
+										<tr class="border-b hover:bg-gray-50">
+											<td class="py-3 px-4">
+												<div class="text-sm">16 Januari 2024</div>
+											</td>
+											<td class="py-3 px-4">
+												<div class="text-sm">13:00</div>
+											</td>
+											<td class="py-3 px-4">
+												<div class="font-medium text-sm">Menyukai Instagram Lembaga Kursus</div>
+											</td>
+											<td class="py-3 px-4 text-right">
+												<span class="font-bold text-gray-600">
+													N/A
+												</span>
+											</td>
+											<td class="py-3 px-4 text-center">
+												<span class="px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+													Waiting for Approval
+												</span>
+											</td>
+										</tr>
+										
+										<tr class="border-b hover:bg-gray-50">
+											<td class="py-3 px-4">
+												<div class="text-sm">16 Januari 2024</div>
+											</td>
+											<td class="py-3 px-4">
+												<div class="text-sm">12:00</div>
+											</td>
+											<td class="py-3 px-4">
+												<div class="font-medium text-sm">Comment pada Instagram Lembaga Kursus</div>
+											</td>
+											<td class="py-3 px-4 text-right">
+												<span class="font-bold text-red-600">
+													N/A
+												</span>
+											</td>
+											<td class="py-3 px-4 text-center">
+												<span class="px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
+													Rejected (blm ada comment)
+												</span>
+											</td>
+										</tr>
+										
+										<tr class="border-b hover:bg-gray-50">
+											<td class="py-3 px-4">
+												<div class="text-sm">15 Januari 2024</div>
+											</td>
+												<td class="py-3 px-4">
+												<div class="text-sm">13:00</div>
+											</td>
+											<td class="py-3 px-4">
+												<div class="font-medium text-sm">Reward - Voucher Diskon 10%</div>
+											</td>
+											<td class="py-3 px-4 text-right">
+												<span class="font-bold text-orange-600">
+													-20
+												</span>
+											</td>
+											<td class="py-3 px-4 text-center">
+												<span class="px-2 py-1 rounded-full text-xs font-medium bg-orange-100 text-orange-800">
+													Redeem Reward
+												</span>
+											</td>
+										</tr>
+										
+										<tr class="border-b hover:bg-gray-50">
+											<td class="py-3 px-4">
+												<div class="text-sm">14 Januari 2024</div>
+											</td>
+												<td class="py-3 px-4">
+												<div class="text-sm">13:00</div>
+											</td>
+											<td class="py-3 px-4">
+												<div class="font-medium text-sm">Beli kursus minimal 1 juta rupiah</div>
+											</td>
+											<td class="py-3 px-4 text-right">
+												<span class="font-bold text-green-600">
+													+100
+												</span>
+											</td>
+											<td class="py-3 px-4 text-center">
+												<span class="px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+													Approved <br>(Get Point)
+												</span>
+											</td>
+										</tr>
+									 
+								 </tbody> 
+							 </table> 
+						 </div> 
+					
 					</div>
                 </div>
 
@@ -210,24 +254,24 @@
 						<div class="user-level level-explorer" id="userLevel">Explorer</div>
                         <div class="mb-2 flex justify-between text-sm">
                             <div class="text-gray-600">Target: 500 poin</div>
-                            <span class="font-medium" id="monthlyProgress">0 / 500</span>
+                            <span class="font-medium" id="monthlyProgress">80 / 500</span>
                         </div>
                         <div class="w-full bg-gray-200 rounded-full h-3">
                             <div id="progressBar" class="bg-gradient-to-r from-purple-600 to-purple-700 h-3 rounded-full progress-bar" style="width: 0%"></div>
                         </div>
-                        <p class="text-xs text-gray-500 mt-2">500 poin lagi naik ke level Achiever!</p>
+                        <p class="text-xs text-gray-500 mt-2">420 poin lagi naik ke level Achiever!</p>
                     </div>
 
                     <!-- Quick Stats -->
                     <div class="grid grid-cols-2 gap-4">
                         <div class="bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-lg p-4 hover-scale">
                             <i class="fas fa-shopping-bag text-2xl mb-2"></i>
-                            <p class="text-2xl font-bold" id="totalPurchases">10</p>
+                            <p class="text-2xl font-bold" id="totalPurchases">1</p>
                             <p class="text-xs opacity-90">Misi Selesai</p>
                         </div>
                         <div class="bg-gradient-to-br from-green-500 to-green-600 text-white rounded-lg p-4 hover-scale">
                             <i class="fas fa-trophy text-2xl mb-2"></i>
-                            <p class="text-2xl font-bold" id="rewardsClaimed">0</p>
+                            <p class="text-2xl font-bold" id="rewardsClaimed">1</p>
                             <p class="text-xs opacity-90">Reward Diambil</p>
                         </div>
                     </div>
@@ -261,9 +305,9 @@
 						<div class="level-info">
 							<div class="level-info-title">Benefit Level Explorer:</div>
 							<ul class="level-info-list">
-								<li><i class="bi bi-check-circle-fill"></i> Diskon 5% untuk pembelian pertama</li>
-								<li><i class="bi bi-check-circle-fill"></i> Akses ke produk eksklusif</li>
-								<li><i class="bi bi-check-circle-fill"></i> 1x voucher gratis ongkir</li>
+								<li><i class="bi bi-check-circle-fill"></i> Penambahan Poin 50 point pada misi Absen Kehadiran</li>
+								<li><i class="bi bi-check-circle-fill"></i> Penambahan Poin 20 point pada misi Main mini game monopoly</li>
+								<li><i class="bi bi-check-circle-fill"></i>Penambahan Poin 30 point pada misi Absen 5 hari dalam seminggu (minimal sesi 2 jam per hari)</li>
 							</ul>
 						</div>
                     </div>
@@ -272,11 +316,89 @@
                     <div class="bg-white rounded-lg card-shadow p-6">
                         <h3 class="text-lg font-bold mb-4 text-gray-800">
                             <i class="fas fa-clock text-purple-600 mr-2"></i>
-                            Aktivitas Terbaru
+                            Misi dan Tantangan
                         </h3>
-                        <div id="recentActivity" class="space-y-3">
-                            <p class="text-gray-500 text-sm">Belum ada aktivitas</p>
+						
+						
+						<div class="mb-4 flex flex-wrap gap-2">
+							<button onclick="filterHistory('dailyMission')" class="filter-btn px-4 py-2 bg-purple-600 text-white rounded-lg text-sm">
+								Daily Mission
+							</button>
+							<button onclick="filterHistory('weeklyMission')" class="filter-btn px-4 py-2 bg-gray-200 text-gray-700 rounded-lg text-sm hover:bg-gray-300">
+								Weekly Mission
+							</button>
+							<button onclick="filterHistory('lifetimeMission')" class="filter-btn px-4 py-2 bg-gray-200 text-gray-700 rounded-lg text-sm hover:bg-gray-300">
+								Lifetime Mission
+							</button>
+						</div>
+						
+						
+                        <!-- <div id="recentActivity" class="space-y-3"> -->
+						
+                        <div id="progressMissionTableBody" class="space-y-3">
+                            
+							<div class="card-body">
+								<div class="mission-list">
+								
+								<!--
+									<div class="mission-item" id="mission1">
+										<div class="mission-title">
+											<span>Absen setiap hari</span>
+											<span class="mission-reward">+10 poin</span>
+										</div>
+										<div class="mission-progress">
+											<div class="mission-progress-bar" id="mission1Progress" style="width: 6.67%"></div>
+										</div>
+										<small class="text-muted">5 / 15 selesai</small>
+									</div>
+									<div class="mission-item" id="mission1">
+										<div class="mission-title">
+											<span>Absen 5 hari dalam seminggu (minimal 2 jam per hari) - Reset Tiap Senin</span>
+											<span class="mission-reward">+30 poin</span>
+										</div>
+										<div class="mission-progress">
+											<div class="mission-progress-bar" id="mission1Progress" style="width: 33%"></div>
+										</div>
+										<small class="text-muted">1 / 30 selesai</small>
+									</div>
+									<div class="mission-item" id="mission2">
+										<div class="mission-title">
+											<span>Membeli kursus dengan minimal 1 juta rupiah</span>
+											<span class="mission-reward">+50 poin</span>
+										</div>
+										<div class="mission-progress">
+											<div class="mission-progress-bar" id="mission1Progress" style="width: 33%"></div>
+										</div>
+										<small class="text-muted">1 / 3 selesai</small>
+									</div>
+									<div class="mission-item" id="mission3">
+										<div class="mission-title">
+											<span>Mereferensikan teman untuk bergabung</span>
+											<span class="mission-reward">+100 poin</span>
+										</div>
+										<div class="mission-progress">
+											<div class="mission-progress-bar" id="mission2Progress" style="width: 0%"></div>
+										</div>
+										<small class="text-muted">0 / 1 selesai</small>
+									</div>
+									<div class="mission-item" id="mission4">
+										<div class="mission-title">
+											<span>Mengikuti akun instagram resmi lembaga kursus</span>
+											<span class="mission-reward">+75 poin</span>
+										</div>
+										<div class="mission-progress">
+											<div class="mission-progress-bar" id="mission3Progress" style="width: 0%"></div>
+										</div>
+										<small class="text-muted">0 / 1 selesai</small>
+									</div>
+									-->
+									
+								</div>
+							</div>
+							
                         </div>
+						
+						
                     </div>
                 </div>
             </div>
@@ -335,6 +457,46 @@
 				
             </div>
         </div>
+		
+		<!-- History Tab -->
+        <div id="historyTab" class="tab-content hidden">
+            <div class="bg-white rounded-lg card-shadow p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">
+                    <i class="fas fa-history text-purple-600 mr-2"></i>
+                    Riwayat Transaksi
+                </h2>
+                
+                <div class="mb-4 flex flex-wrap gap-2">
+                    <button onclick="filterHistory('all')" class="filter-btn px-4 py-2 bg-purple-600 text-white rounded-lg text-sm">
+                        Semua
+                    </button>
+                    <button onclick="filterHistory('earned')" class="filter-btn px-4 py-2 bg-gray-200 text-gray-700 rounded-lg text-sm hover:bg-gray-300">
+                        Poin Didapat
+                    </button>
+                    <button onclick="filterHistory('redeemed')" class="filter-btn px-4 py-2 bg-gray-200 text-gray-700 rounded-lg text-sm hover:bg-gray-300">
+                        Poin Ditukar
+                    </button>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b">
+                                <th class="text-left py-3 px-4">Tanggal</th>
+                                <th class="text-left py-3 px-4">Deskripsi</th>
+                                <th class="text-right py-3 px-4">Poin</th>
+                                <th class="text-center py-3 px-4">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyTableBody">
+                            <tr>
+                                <td colspan="6" class="text-center py-8 text-gray-500">Belum ada riwayat transaksi</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
         <!-- Attendance Tab -->
         <div id="attendanceTab" class="tab-content hidden">
@@ -344,57 +506,105 @@
                     Attendance
                 </h2>
          
+				<div>
+					Nama Peserta : Joni
+				</div>
+				<div>
+					Tgl Hari ini : 03 Oktober 2025
+				</div>
+				<div>
+					Jumlah Jam Yang Diambil Untuk Sesi Hari Ini
+					<select id="storeLocation" required
+                                class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition">
+						<option value="">Pilih Durasi Untuk Sesi Hari Ini</option>
+						<option value="Jakarta Pusat - Grand Indonesia 2">1 jam</option>
+						<option value="Jakarta Pusat - Grand Indonesia">2 jam</option>
+						<option value="Jakarta Selatan - Pondok Indah Mall">3 jam</option>
+							<option value="Jakarta Pusat - Grand Indonesia 2">4 jam</option>
+						<option value="Jakarta Pusat - Grand Indonesia">5 jam</option>
+						<option value="Jakarta Selatan - Pondok Indah Mall">6 jam</option>
+							<option value="Jakarta Pusat - Grand Indonesia 2">7 jam</option>
+						<option value="Jakarta Pusat - Grand Indonesia">8 jam</option>
+                    </select>
+				</div>
+				<div>
+					<button type="submit" 
+                            class="btnSubmitKehadiran bg-gradient-to-r from-purple-600 to-purple-700 text-white py-3 rounded-lg font-medium hover:from-purple-700 hover:to-purple-800 transition transform hover:scale-105">
+                            <i class="fas fa-check-circle mr-2"></i>
+                            Submit Kehadiran
+                        </button>
+				</div>
+				
+				<!-- <div> -->
+					<!-- <span style="color: red">Maaf, sesi sudah habis</span> -->
+				<!-- </div> -->
 				
 				<div class="mb-4">
                     <div class="row">
                         <div class="col-md-4">
-                            <label for="classSelect" class="form-label">Pilih Kelas</label>
-                            <select class="form-select" id="classSelect">
-                                <option value="animation-basic" selected>Animation Basic</option>
-                                <option value="web-development">Web Development</option>
-                                <option value="ui-ux-design">UI/UX Design</option>
-                            </select>
+                            <label for="classSelect" class="form-label">Program</label>
+							<br>
+							<!--<label>Introduction To 3D Modelling</label>-->
+							
+							<select id="storeLocation" required
+                                class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition">
+								<option value="">Pilih Program Dimana Anda Enroll</option>
+								<option value="Jakarta Pusat - Grand Indonesia 2">Introduction To 2D Modelling</option>
+								<option value="Jakarta Pusat - Grand Indonesia">Introduction To 3D Modelling</option>
+							</select>
+							
                         </div>
                         <div class="col-md-4">
-                            <label for="sessionDate" class="form-label">Tanggal Sesi</label>
-                            <input type="date" class="form-control" id="sessionDate" value="2025-11-10">
+                            <label for="sessionDate" class="form-label">Sesi Selesai</label>
+							<br>
+							<label>2 jam</label>
                         </div>
-                        <div class="col-md-4">
-                            <label for="sessionTime" class="form-label">Waktu Sesi</label>
-                            <input type="text" class="form-control" id="sessionTime" value="10:00-11:00">
+						<div class="col-md-4">
+                            <label for="sessionTime" class="form-label">Total Sesi</label>
+                            <br>
+							<label>15 jam</label>
                         </div>
                     </div>
                 </div>
                 
+				<!--
                 <div class="mb-3">
                     <label for="lessonTopic" class="form-label">Topik Pelajaran</label>
                     <input type="text" class="form-control" id="lessonTopic" value="Definisi Animasi">
                 </div>
+				-->
                 
                 <div class="overflow-x-auto">
                     <table class="w-full">
                         <thead>
                             <tr class="border-b">
                                 <th class="text-left py-3 px-4">No</th>
-                                <th class="text-left py-3 px-4">Nama Peserta</th>
-                                <th class="text-left py-3 px-4">Sesi Selesai</th>
-                                <th class="text-right py-3 px-4">Total Sesi</th>
-                                <th class="text-center py-3 px-4">Aksi</th>
+                                <th class="text-left py-3 px-4">Waktu Sesi</th>
+								<th class="text-left py-3 px-4">Jumlah Jam Diambil</th>
+                                <th class="text-center py-3 px-4">Status Absensi</th>
                             </tr>
                         </thead>
                         <tbody id="historyTableBody">
-                            <tr>
-                                <!--<td colspan="5" class="text-center py-8 text-gray-500">Belum ada riwayat transaksi</td>-->
+                            
+							<tr>
 								<td>1</td>
-								<td>Joni</td>
-								<td>5 jam</td>
-								<td>15 jam</td>
-								<td><button type="submit" 
-                            class="w-full bg-gradient-to-r from-purple-600 to-purple-700 text-white py-3 rounded-lg font-medium hover:from-purple-700 hover:to-purple-800 transition transform hover:scale-105">
-                            <i class="fas fa-check-circle mr-2"></i>
-                            Submit Kehadiran
-                        </button></td>
+								<td>Jumat, 03 Oktober 2025</td>
+								<td>1 jam</td>
+								<td>Waiting for Approval (Student Submit Hadir)</td>
                             </tr>
+							<tr>
+								<td>2</td>
+								<td>Kamis, 02 Oktober 2025</td>
+								<td>1 jam</td>
+								<td>Approved by Instructor (Student Hadir)</td>
+                            </tr>
+							<tr>
+								<td>3</td>
+								<td>Rabu, 01 Oktober 2025</td>
+								<td>1 jam</td>
+								<td>Approved by Instructor (Student Hadir)</td>
+                            </tr>
+							
                         </tbody>
                     </table>
                 </div>

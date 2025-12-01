@@ -5,20 +5,231 @@ let userData = {
     monthlyPoints: 150,
     totalPurchases: 5,
     rewardsClaimed: 2,
-    transactions: [],
-    currentLevel: 'Silver'
+    currentLevel: 'Silver',
+	transactions: [
+        {
+            id: 1,
+            type: 'earned',
+            date: '2024-01-15',
+            description: 'Pembelian - STR-2024-001',
+            location: 'Jakarta Pusat - Grand Indonesia',
+            points: 150,
+            amount: 1500000,
+            receiptNumber: 'STR-2024-001',
+            receiptImage: 'https://picsum.photos/seed/receipt1/400/600.jpg'
+        },
+        {
+            id: 2,
+            type: 'earned',
+            date: '2024-01-14',
+            description: 'Pembelian - STR-2024-002',
+            location: 'Jakarta Selatan - Pondok Indah Mall',
+            points: 85,
+            amount: 850000,
+            receiptNumber: 'STR-2024-002',
+            receiptImage: 'https://picsum.photos/seed/receipt2/400/600.jpg'
+        },
+        {
+            id: 3,
+            type: 'redeemed',
+            date: '2024-01-13',
+            description: 'Reward - Voucher Diskon 10%',
+            location: '-',
+            points: -100
+        },
+        {
+            id: 4,
+            type: 'earned',
+            date: '2024-01-12',
+            description: 'Pembelian - STR-2024-003',
+            location: 'Jakarta Utara - Mall Kelapa Gading',
+            points: 200,
+            amount: 2000000,
+            receiptNumber: 'STR-2024-003',
+            receiptImage: 'https://picsum.photos/seed/receipt3/400/600.jpg'
+        },
+        {
+            id: 5,
+            type: 'redeemed',
+            date: '2024-01-10',
+            description: 'Reward - Gratis Ongkir',
+            location: '-',
+            points: -50
+        },
+        {
+            id: 6,
+            type: 'earned',
+            date: '2024-01-08',
+            description: 'Pembelian - STR-2024-004',
+            location: 'Jakarta Barat - Central Park',
+            points: 120,
+            amount: 1200000,
+            receiptNumber: 'STR-2024-004',
+            receiptImage: 'https://picsum.photos/seed/receipt4/400/600.jpg'
+        },
+        {
+            id: 7,
+            type: 'earned',
+            date: '2024-01-05',
+            description: 'Pembelian - STR-2024-005',
+            location: 'Tangerang - AEON Mall',
+            points: 95,
+            amount: 950000,
+            receiptNumber: 'STR-2024-005',
+            receiptImage: 'https://picsum.photos/seed/receipt5/400/600.jpg'
+        },
+        {
+            id: 8,
+            type: 'redeemed',
+            date: '2024-01-03',
+            description: 'Reward - Tote Bag Exclusive',
+            location: '-',
+            points: -300
+        },
+        {
+            id: 9,
+            type: 'earned',
+            date: '2023-12-28',
+            description: 'Pembelian - STR-2023-156',
+            location: 'Bekasi - Summarecon Mall',
+            points: 180,
+            amount: 1800000,
+            receiptNumber: 'STR-2023-156',
+            receiptImage: 'https://picsum.photos/seed/receipt6/400/600.jpg'
+        },
+        {
+            id: 10,
+            type: 'earned',
+            date: '2023-12-25',
+            description: 'Pembelian - STR-2023-155',
+            location: 'Depok - Depok Town Square',
+            points: 75,
+            amount: 750000,
+            receiptNumber: 'STR-2023-155',
+            receiptImage: 'https://picsum.photos/seed/receipt7/400/600.jpg'
+        },
+        {
+            id: 11,
+            type: 'earned',
+            date: '2023-12-20',
+            description: 'Pembelian - STR-2023-154',
+            location: 'Jakarta Pusat - Grand Indonesia',
+            points: 250,
+            amount: 2500000,
+            receiptNumber: 'STR-2023-154',
+            receiptImage: 'https://picsum.photos/seed/receipt8/400/600.jpg'
+        },
+        {
+            id: 12,
+            type: 'redeemed',
+            date: '2023-12-18',
+            description: 'Reward - Cashback Rp 25.000',
+            location: '-',
+            points: -250
+        }
+    ],
+	progressMissions: [
+        {
+            id: 1,
+            type: 'dailyMission',
+            name: 'Absen Setiap Hari',
+            points: 10,
+			usedAttempt: 1,
+			maxAttempt: 1,
+        },
+        {
+            id: 2,
+            type: 'weeklyMission',
+            name: 'Absen 5 hari dalam seminggu (minimal sesi 2 jam per hari)',
+            points: 30,
+			usedAttempt: 1,
+			maxAttempt: 5
+        },
+		 {
+            id: 3,
+            type: 'dailyMission',
+            name: 'Membeli kursus dengan minimal 1 juta rupiah',
+            points: 100,
+			usedAttempt: 1,
+			maxAttempt: 1
+        },
+		 {
+            id: 4,
+            type: 'lifetimeMission',
+            name: 'Mengikuti akun instagram resmi lembaga kursus',
+            points: 75,
+			usedAttempt: 0,
+			maxAttempt: 1
+        },
+		{
+            id: 5,
+            type: 'dailyMission',
+            name: 'Mereferensikan teman untuk bergabung',
+            points: 100,
+			usedAttempt: 0,
+			maxAttempt: 1
+        },
+		{
+            id: 6,
+            type: 'dailyMission',
+            name: 'Menyukai postingan instagram lembaga kursus',
+            points: 5,
+			usedAttempt: 0,
+			maxAttempt: 1
+        },
+		{
+            id: 7,
+            type: 'dailyMission',
+            name: 'Berkomentar pada postingan instagram lembaga kursus',
+            points: 5,
+			usedAttempt: 0,
+			maxAttempt: 1
+        },
+		{
+            id: 8,
+            type: 'dailyMission',
+            name: 'Membuat instagram story instagram lembaga kursus',
+            points: 5,
+			usedAttempt: 0,
+			maxAttempt: 1
+        },
+		{
+            id: 9,
+            type: 'dailyMission',
+            name: 'Memainkan mini game Monopoly',
+            points: 30,
+			usedAttempt: 0,
+			maxAttempt: 1
+        },
+		{
+            id: 10,
+            type: 'dailyMission',
+            name: 'Memberi review di google my business',
+            points: 40,
+			usedAttempt: 0,
+			maxAttempt: 1
+        },
+		{
+            id: 11,
+            type: 'lifetimeMission',
+            name: 'Join Academy Program',
+            points: 100,
+			usedAttempt: 0,
+			maxAttempt: 1
+        },
+	]
 };
 
 // Rewards Catalog
 const rewardsCatalog = [
-    { id: 1, name: 'Voucher Diskon 10%', points: 100, description: 'Berlaku untuk pembelian minimum Rp 100.000', icon: 'fa-tag', category: 'voucher' },
-    { id: 2, name: 'Voucher Diskon 20%', points: 200, description: 'Berlaku untuk pembelian minimum Rp 200.000', icon: 'fa-percentage', category: 'voucher' },
-    { id: 3, name: 'Gratis Ongkir', points: 50, description: 'Gratis ongkir untuk pembelian online', icon: 'fa-truck', category: 'voucher' },
-    { id: 4, name: 'Cashback Rp 25.000', points: 250, description: 'Cashback langsung ke wallet', icon: 'fa-wallet', category: 'cashback' },
-    { id: 5, name: 'Cashback Rp 50.000', points: 500, description: 'Cashback langsung ke wallet', icon: 'fa-money-bill-wave', category: 'cashback' },
-    { id: 6, name: 'Tote Bag Exclusive', points: 300, description: 'Tote bag eksklusif LoyaltyPoints', icon: 'fa-shopping-bag', category: 'merchandise' },
-    { id: 7, name: 'Tumbler Premium', points: 400, description: 'Tumbler stainless steel premium', icon: 'fa-mug-hot', category: 'merchandise' },
-    { id: 8, name: 'Voucher Belanja Rp 100.000', points: 1000, description: 'Voucher belanja tanpa minimum', icon: 'fa-gift', category: 'voucher' }
+    { id: 1, name: 'Voucher Diskon 10%', points: 100, description: 'Berlaku untuk pembelian minimum Rp 100.000', icon: 'fa-tag', category: 'voucher', image: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=250&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+    { id: 2, name: 'Voucher Diskon 20%', points: 200, description: 'Berlaku untuk pembelian minimum Rp 200.000', icon: 'fa-percentage', category: 'voucher', image: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=250&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+    { id: 3, name: 'Gratis Ongkir', points: 50, description: 'Gratis ongkir untuk pembelian online', icon: 'fa-truck', category: 'voucher', image: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=250&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+    { id: 4, name: 'Cashback Rp 25.000', points: 250, description: 'Cashback langsung ke wallet', icon: 'fa-wallet', category: 'cashback', image: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=250&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+    { id: 5, name: 'Cashback Rp 50.000', points: 500, description: 'Cashback langsung ke wallet', icon: 'fa-money-bill-wave', category: 'cashback', image: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=250&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+    { id: 6, name: 'Tote Bag Exclusive', points: 300, description: 'Tote bag eksklusif LoyaltyPoints', icon: 'fa-shopping-bag', category: 'merchandise', image: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=250&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+    { id: 7, name: 'Tumbler Premium', points: 400, description: 'Tumbler stainless steel premium', icon: 'fa-mug-hot', category: 'merchandise', image: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=250&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
+    { id: 8, name: 'Voucher Belanja Rp 100.000', points: 1000, description: 'Voucher belanja tanpa minimum', icon: 'fa-gift', category: 'voucher', image: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=250&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' }
 ];
 
 //game
@@ -45,11 +256,14 @@ let boardSize = 0;
 
 // Initialize
 document.addEventListener('DOMContentLoaded', function() {
-    loadUserData();
+	updateHistory('dailyMission');
+	
+    //loadUserData();
     initializeRewards();
     updateDisplay();
     setMaxDate();
     initializeEventListeners();
+	
 });
 
 // Initialize Event Listeners
@@ -73,6 +287,7 @@ function setMaxDate() {
 }
 
 // Load user data from localStorage
+/*
 function loadUserData() {
     const savedData = localStorage.getItem('loyaltyPointsData');
     if (savedData) {
@@ -84,6 +299,7 @@ function loadUserData() {
 function saveUserData() {
     localStorage.setItem('loyaltyPointsData', JSON.stringify(userData));
 }
+*/
 
 // Tab Navigation
 function showTab(tabName) {
@@ -106,11 +322,11 @@ function showTab(tabName) {
     // Update content based on tab
     if (tabName === 'rewards') {
         initializeRewards();
-    } else if (tabName === 'history') {
-        updateHistory();
+    } else if (tabName === 'earn') {
+        updateHistory('dailyMission');
     } else if (tabName === 'game') {
 		initializeGame();
-	}
+	} 
 }
 
 // Handle form submission
@@ -148,7 +364,7 @@ function handleFormSubmit(e) {
     userData.totalPurchases++;
     
     // Save and update
-    saveUserData();
+    //saveUserData();
     updateDisplay();
     updateRecentActivity();
     
@@ -175,9 +391,8 @@ function initializeRewards() {
         rewardCard.className = `reward-card bg-white rounded-lg card-shadow p-6 ${!canRedeem ? 'opacity-60' : ''}`;
         rewardCard.innerHTML = `
             <div class="text-center mb-4">
-                <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full mx-auto mb-3 flex items-center justify-center">
-                    <i class="fas ${reward.icon} text-white text-2xl"></i>
-                </div>
+                
+				<td><img src="${reward.image}" alt="${reward.image}"></td>
                 <h3 class="font-bold text-gray-800">${reward.name}</h3>
                 <p class="text-xs text-gray-600 mt-2">${reward.description}</p>
             </div>
@@ -429,7 +644,7 @@ function redeemReward(rewardId) {
     userData.transactions.unshift(transaction);
     
     // Save and update
-    saveUserData();
+    //saveUserData();
     updateDisplay();
     initializeRewards();
     updateHistory();
@@ -439,17 +654,17 @@ function redeemReward(rewardId) {
 
 // Update display
 function updateDisplay() {
-    document.getElementById('totalPointsDisplay').textContent = userData.totalPoints.toLocaleString();
-    document.getElementById('totalPurchases').textContent = userData.totalPurchases;
-    document.getElementById('rewardsClaimed').textContent = userData.rewardsClaimed;
+    //document.getElementById('totalPointsDisplay').textContent = userData.totalPoints.toLocaleString();
+    // document.getElementById('totalPurchases').textContent = userData.totalPurchases;
+    // document.getElementById('rewardsClaimed').textContent = userData.rewardsClaimed;
     document.getElementById('lifetimePoints').textContent = userData.lifetimePoints.toLocaleString();
     
     // Update progress bar
     const progress = Math.min((userData.monthlyPoints / 500) * 100, 100);
     document.getElementById('progressBar').style.width = progress + '%';
-    document.getElementById('monthlyProgress').textContent = `${userData.monthlyPoints} / 500`;
+    //document.getElementById('monthlyProgress').textContent = `${userData.monthlyPoints} / 500`;
     
-    updateRecentActivity();
+    //updateRecentActivity();
 }
 
 // Update recent activity
@@ -488,46 +703,81 @@ function updateRecentActivity() {
     `).join('');
 }
 
-// Update history table
-function updateHistory(filter = 'all') {
-    const tbody = document.getElementById('historyTableBody');
+// progressMissionTableBody
+function updateHistory(filter = 'dailyMission') {
+    let tbody = document.getElementById('progressMissionTableBody');
+	tbody = tbody.querySelector('.card-body .mission-list');
+
     let transactions = userData.transactions;
+	let progressMissions = userData.progressMissions;
     
-    if (filter === 'earned') {
-        transactions = transactions.filter(t => t.type === 'earned');
-    } else if (filter === 'redeemed') {
-        transactions = transactions.filter(t => t.type === 'redeemed');
-    }
+	/*
+	console.log(userData);
+	console.log(transactions);
+	console.log(progressMissions);
+	*/
+	
+    if (filter === 'dailyMission') {
+		//alert('dailyMission');
+		progressMissions = progressMissions.filter(pm => pm.type == 'dailyMission');
+        //transactions = transactions.filter(t => t.type === 'earned');
+    } else if (filter === 'weeklyMission') {
+		//alert('weeklyMission');
+		progressMissions = progressMissions.filter(pm => pm.type == 'weeklyMission');
+        //transactions = transactions.filter(t => t.type === 'redeemed');
+    } else if (filter === 'lifetimeMission') {
+		//alert('lifetimeMission');
+		progressMissions = progressMissions.filter(pm => pm.type == 'lifetimeMission');
+	}
     
     if (transactions.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="5" class="text-center py-8 text-gray-500">Belum ada riwayat transaksi</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="6" class="text-center py-8 text-gray-500">Belum ada riwayat transaksi</td></tr>';
         return;
     }
     
-    tbody.innerHTML = transactions.map(transaction => `
-        <tr class="border-b hover:bg-gray-50">
-            <td class="py-3 px-4">${transaction.date}</td>
-            <td class="py-3 px-4">${transaction.description}</td>
-            <td class="py-3 px-4">${transaction.location}</td>
-            <td class="py-3 px-4 text-right font-medium ${
-                transaction.type === 'earned' 
-                ? 'text-green-600' 
-                : 'text-red-600'
-            }">
-                ${transaction.type === 'earned' ? '+' : ''}${transaction.points}
-            </td>
-            <td class="py-3 px-4 text-center">
-                <span class="px-2 py-1 rounded-full text-xs font-medium ${
-                    transaction.type === 'earned' 
-                    ? 'bg-green-100 text-green-800' 
-                    : 'bg-red-100 text-red-800'
-                }">
-                    ${transaction.type === 'earned' ? 'Didapat' : 'Ditukar'}
-                </span>
+	/*
+	tbody.innerHTML = progressMissions.map(progressMission => `
+         <tr class="border-b hover:bg-gray-50">
+            <td class="py-3 px-4">
+                <div class="text-sm">${progressMission.name}</div>
+				<div class="text-sm">${progressMission.points}</div>
             </td>
         </tr>
+		
     `).join('');
-}
+	*/
+	
+	/*
+	tbody.innerHTML = progressMissions.map(progressMission => `
+        <div class="mission-item" id="mission1">
+			<div class="mission-title">
+				<span>${progressMission.name}</span>
+				<span class="mission-reward">+${progressMission.points} poin</span>
+			</div>
+			<div class="mission-progress">
+				<div class="mission-progress-bar" id="mission1Progress" style="width: ${progressPercentage}%"></div>
+			</div>
+			<small class="text-muted">${progressMission.usedAttempt} / ${progressMission.maxAttempt} selesai</small>
+		</div>
+    `).join('');
+	*/
+	
+	tbody.innerHTML = progressMissions.map(progressMission => {
+		const progressPercent = (progressMission.usedAttempt / progressMission.maxAttempt) * 100;
+		return `
+			<div class="mission-item" id="mission1">
+				<div class="mission-title">
+					<span>${progressMission.name}</span>
+					<span class="mission-reward">+${progressMission.points} poin</span>
+				</div>
+				<div class="mission-progress">
+					<div class="mission-progress-bar" id="mission1Progress" style="width: ${progressPercent}%"></div>
+				</div>
+				<small class="text-muted">${progressMission.usedAttempt} / ${progressMission.maxAttempt} selesai</small>
+			</div>
+		`;
+		}).join('');
+	}
 
 // Filter history
 function filterHistory(filter) {
@@ -540,6 +790,24 @@ function filterHistory(filter) {
     event.target.classList.add('bg-purple-600', 'text-white');
     
     updateHistory(filter);
+}
+
+
+// Show image modal
+function showImageModal(imageSrc) {
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    
+    modalImage.src = imageSrc;
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+}
+
+// Close image modal
+function closeImageModal() {
+    const modal = document.getElementById('imageModal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
 }
 
 // Show notification
@@ -582,7 +850,7 @@ function checkLevelUp() {
     if (newLevel !== userData.currentLevel) {
         userData.currentLevel = newLevel;
         showNotification(`Selamat! Anda naik ke level ${newLevel}!`, 'success');
-        saveUserData();
+        //saveUserData();
     }
 }
 
