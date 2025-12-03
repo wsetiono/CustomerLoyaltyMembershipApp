@@ -744,3 +744,16 @@ input[type="file"] {
 .btnSubmitKehadiran {
 	padding: 10px;
 }
+
+
+/* Centered logo */
+.logo-center {
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+}
+.logo-center img {
+  width: 220px;
+  height: auto;
+  object-fit: contain;
+}
